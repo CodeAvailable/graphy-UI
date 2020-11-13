@@ -13,9 +13,18 @@ conan_cmake_run(CONANFILE conanfile.txt
                 BASIC_SETUP CMAKE_TARGETS
                 BUILD missing)
 
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin) 
+
+add_subdirectory(graphy-json-module/lib)
+add_subdirectory(graphy-qml-engine/lib)
+add_subdirectory(graphy-qml-file-selector-module/lib)
+add_subdirectory(graphy-rest-service/lib)
+
 file(GLOB INC ${PROJECT_SOURCE_DIR}/src/*.h)
 file(GLOB SRC ${PROJECT_SOURCE_DIR}/src/*.cpp)
 add_executable(${PROJECT_NAME} ${INC} ${SRC})
 conan_target_link_libraries(${PROJECT_NAME})
-target_link_libraries(${PROJECT_NAME})
+target_link_libraries(${PROJECT_NAME} graphyRestServiceLib graphyQmlFileSelectorModuleLib graphyQmlEngineLib graphyJsonModuleLib)
 set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 17)
