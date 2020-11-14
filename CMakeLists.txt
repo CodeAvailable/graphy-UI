@@ -2,6 +2,14 @@
 cmake_minimum_required(VERSION 3.1.3)
 project(graphyUI CXX)
 
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+set(CMAKE_VERBOSE_MAKEFILE TRUE)
+
+# Turn on automatic invocation of the MOC, UIC & RCC
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTORCC ON)
+
 # Download automatically, you can also just copy the conan.cmake file
 if(NOT EXISTS "${CMAKE_CURRENT_BINARY_DIR}/conan.cmake")
    message(STATUS "Downloading conan.cmake from https://github.com/conan-io/cmake-conan")
@@ -22,9 +30,18 @@ add_subdirectory(graphy-qml-engine/lib)
 add_subdirectory(graphy-qml-file-selector-module/lib)
 add_subdirectory(graphy-rest-service/lib)
 
+# Make this a GUI application on Windows
+if(WIN32)
+  set(CMAKE_WIN32_EXECUTABLE ON)
+endif()
+
+# Find the QtWidgets library
+#find_package(Qt5 REQUIRED COMPONENTS Widgets)
+find_package(Qt5Core CONFIG REQUIRED)
+
 file(GLOB INC ${PROJECT_SOURCE_DIR}/src/*.h)
 file(GLOB SRC ${PROJECT_SOURCE_DIR}/src/*.cpp)
 add_executable(${PROJECT_NAME} ${INC} ${SRC})
-conan_target_link_libraries(${PROJECT_NAME})
-target_link_libraries(${PROJECT_NAME} graphyRestServiceLib graphyQmlFileSelectorModuleLib graphyQmlEngineLib graphyJsonModuleLib)
+#conan_target_link_libraries(${PROJECT_NAME})
+target_link_libraries(${PROJECT_NAME} Qt5::Core graphyRestServiceLib graphyQmlFileSelectorModuleLib graphyQmlEngineLib graphyJsonModuleLib)
 set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 17)
