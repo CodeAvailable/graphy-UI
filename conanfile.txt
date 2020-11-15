@@ -1,5 +1,11 @@
 [requires]
-qt/5.15.1@bincrafters/stable
+qt/5.15.0@bincrafters/stable
+
+[options]
+
 
 [generators]
 cmake
+
+[imports]
+bin, *.pdb -> ./bin

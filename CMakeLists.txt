@@ -2,6 +2,11 @@
 cmake_minimum_required(VERSION 3.1.3)
 project(graphyUI CXX)
 
+add_subdirectory(graphy-json-module/lib)
+add_subdirectory(graphy-qml-engine/lib)
+add_subdirectory(graphy-qml-file-selector-module/lib)
+add_subdirectory(graphy-rest-service/lib)
+
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_VERBOSE_MAKEFILE TRUE)
 
@@ -25,11 +30,6 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin) 
 
-add_subdirectory(graphy-json-module/lib)
-add_subdirectory(graphy-qml-engine/lib)
-add_subdirectory(graphy-qml-file-selector-module/lib)
-add_subdirectory(graphy-rest-service/lib)
-
 # Make this a GUI application on Windows
 if(WIN32)
   set(CMAKE_WIN32_EXECUTABLE ON)
@@ -42,6 +42,7 @@ find_package(Qt5Core CONFIG REQUIRED)
 file(GLOB INC ${PROJECT_SOURCE_DIR}/src/*.h)
 file(GLOB SRC ${PROJECT_SOURCE_DIR}/src/*.cpp)
 add_executable(${PROJECT_NAME} ${INC} ${SRC})
-#conan_target_link_libraries(${PROJECT_NAME})
-target_link_libraries(${PROJECT_NAME} Qt5::Core graphyRestServiceLib graphyQmlFileSelectorModuleLib graphyQmlEngineLib graphyJsonModuleLib)
+conan_target_link_libraries(${PROJECT_NAME})
+target_link_libraries(${PROJECT_NAME} graphyRestServiceLib graphyQmlFileSelectorModuleLib graphyQmlEngineLib graphyJsonModuleLib)
+#target_link_libraries(${PROJECT_NAME})
 set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 17)
