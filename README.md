@@ -20,6 +20,8 @@ conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-co
 - libxcb-xfixes0-dev
 - libxcb-xinerama0-dev
 - m4
+- libgl1-mesa-dev
+
 
 **python depended**
 - mako
