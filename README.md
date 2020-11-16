@@ -1,4 +1,5 @@
 # graphyUI
+![CI](https://github.com/CodeAvailable/graphy-UI/workflows/CI/badge.svg)
 
 *bintray*
 ```[bash]
