@@ -1,12 +1,12 @@
 [submodule "graphy-rest-service"]
 	path = graphy-rest-service
-	url = git@github.com:CodeAvailable/graphy-rest-service.git
+	url = https://github.com/CodeAvailable/graphy-rest-service.git
 [submodule "graphy-json-module"]
 	path = graphy-json-module
-	url = git@github.com:CodeAvailable/graphy-json-module.git
+	url = https://github.com/CodeAvailable/graphy-json-module.git
 [submodule "graphy-qml-engine"]
 	path = graphy-qml-engine
-	url = git@github.com:CodeAvailable/graphy-qml-engine.git
+	url = https://github.com/CodeAvailable/graphy-qml-engine.git
 [submodule "graphy-qml-file-selector-module"]
 	path = graphy-qml-file-selector-module
-	url = git@github.com:CodeAvailable/graphy-qml-file-selector-module.git
+	url = https://github.com/CodeAvailable/graphy-qml-file-selector-module.git
