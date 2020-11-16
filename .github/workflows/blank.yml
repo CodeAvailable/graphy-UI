@@ -26,7 +26,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: install packages
-        run: sudo apt install -y wget git cmake gcc g++ 
+        run: bash ./env_linux.sh
       - name: bintray setup
         run: |
               wget https://dl.bintray.com/conan/installers/conan-ubuntu-64_1_31_2.deb
