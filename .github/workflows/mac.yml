@@ -1,0 +1,38 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI_mac
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the main branch
+on:
+  pull_request:
+    branches: [ main ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: macos-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      - name: Checkout submodules
+        run: git submodule update --init --recursive
+
+      # Runs a single command using the runners shell
+      - name: bintray setup
+        run: |
+              wget https://dl.bintray.com/conan/installers/conan-ubuntu-64_1_31_2.deb
+              sudo dpkg -i conan-ubuntu-64_1_31_2.deb
+              conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan 
+      - name: install package
+        run: sudo apt install -y python3-pip git cmake gcc g++ libgl1-mesa-dev xorg-dev libx11-xcb-dev libxcb-render0-dev libxcb-render-util0-dev libxcb-xkb-dev libxcb-icccm4-dev libxcb-image0-dev  libxcb-keysyms1-dev libxcb-randr0-dev libxcb-shape0-dev libxcb-sync-dev libxcb-xfixes0-dev libxcb-xinerama0-dev m4
+      # Runs a set of commands using the runners shell
+      - name: build & run
+        run: |
+          mkdir build && cd build
+          cmake .. -DCMAKE_BUILD_TYPE=Release
+          cmake --build . --config Release
