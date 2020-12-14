@@ -4,9 +4,13 @@
 *bintray*
 ```[bash]
 conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan 
+conan remote add pocoproject https://api.bintray.com/conan/pocoproject/conan 
+conan remote add conan-community https://api.bintray.com/conan/conan-community/conan
+conan remote add conan-center https://api.bintray.com/conan/conan/conan-center  
 ```
 
 **Depended package**
+- libgl-dev
 - xorg-dev
 - libx11-xcb-dev
 - libxcb-render0-dev
@@ -19,10 +23,8 @@ conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-co
 - libxcb-shape0-dev
 - libxcb-sync-dev
 - libxcb-xfixes0-dev
-- libxcb-xinerama0-dev
-- m4
-- libgl1-mesa-dev
-
+- libxcb-dri3-dev
+- libxcb-util-dev
 
 **python depended**
 - mako
